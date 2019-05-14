@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>
+            awesome tomato chat
+        </title>
+            
+        <style>
+        p{
+            text-align: center;
+        }
+        </style>
+        </head>
+     <body>
+           <ul id="messenger">
+               
+           </ul>
+           <form action="">
+               <input autocomplete="off" id="m"></input> <button>
+                   send
+               </button>
+           </form>
+
+           <script src="/socket.io/socket.io.js"></script>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+            <script>
+                var socket = io();
+                $('form').submit(function(form) {
+                    form.preventDefault();
+                    socket.emit("chat", $('#m').val());
+                    $('#m').val("");
+                    return false;
+                });
+                socket.on('chat', function(message) {
+                    $('#messenger').append($('<li>').text(message));
+                });
+            </script> 
+    </body>
+
+</html>
