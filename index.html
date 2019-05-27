@@ -5,12 +5,14 @@
         </title>
 
         <style>
-          html, body {
+            html, body {
                 height: 100%;
                 margin: 0px;
                 padding: 0px;
             }
-
+            .chat {
+                display:hide;
+            }
             .message-composer {
                 width: 100%;
                 height: 60px;
@@ -40,12 +42,14 @@
         </head>
      <body>
        <div class="pages">
+           <div class= "nickname page">
+           </div>
             <div class="chat page">
                 <div class="chat-container">
                     <ul class="messages">
                     </ul>
                 </div>
-                <input class="message-composer" placeholder="just start typing..." autocomplete="off"></input>
+                <input class="message-composer" placeholder="your tomato goes here" autocomplete="off"></input>
             </div>
         </div>
 
