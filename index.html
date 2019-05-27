@@ -10,8 +10,21 @@
                 margin: 0px;
                 padding: 0px;
             }
+            .page{
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            .nickname {
+                background:rgb(141, 23, 23)
+            }
+            .nickname-input {
+                width: 100%;
+                height: 100%;
+            }
             .chat {
-                display:hide;
+                display: none;
             }
             .message-composer {
                 width: 100%;
@@ -43,6 +56,7 @@
      <body>
        <div class="pages">
            <div class= "nickname page">
+               <input class="nickname-input" placeholder="type your talking tomato's name here..........."></input>
            </div>
             <div class="chat page">
                 <div class="chat-container">
@@ -57,7 +71,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script>
             var socket = io();
-            var username = "cow";
+            var username;
+            $('.nickname-input').keypress(function(key) {
+                if (key.which == 13) {
+                    username = $('.nickname-input').val();
+                    $('.nickname').css('display', 'none');
+                    $('.chat').css('display', 'contents');
+
+                }
+            });
             $('.message-composer').keypress(function(key) {
                 if (key.which == 13) {
                     socket.emit('chat', username + ": " + $('.message-composer').val());
@@ -69,9 +91,6 @@
                 $('.messages').append($('<li>').text(message));
                 $('.messages')[0].scrollTop = Number.MAX_SAFE_INTEGER;
             });
-            /*$(document).ready(function() {
-                username = prompt("Choose a nickname");
-            });*/
         </script> 
     </body>
 </html>
