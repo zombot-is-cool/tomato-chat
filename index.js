@@ -10,7 +10,10 @@ io.on('connection', function(socket) {
     console.log('t0MATO p3rS0n c0nn3ctd');
     socket.on ('chat', function(message) {
         console.log(message);
-        io.emit('chat', message);
+        if (message.vlal != "" && message.vlal.length < 200) {
+            io.emit('chat', message.name + " : " + message.vlal);
+        }
+        
     });
     socket.on('disconnect', function() {
         console.log('someone disconnected D:')
